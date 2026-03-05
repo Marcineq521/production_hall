@@ -1,0 +1,2 @@
+ALTER TABLE work_orders
+ALTER COLUMN machine_id SET NOT NULL;

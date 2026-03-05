@@ -2,9 +2,11 @@ package pl.marcin.production_hall.domain;
 
 public enum WorkOrderStatus {
 
-    PLANNED,
-    RUNNING,
+    NEW,
+    IN_PROGRESS,
     PAUSED,
     DONE,
     CANCELED
 }
+
+
