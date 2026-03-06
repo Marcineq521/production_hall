@@ -25,11 +25,11 @@ public class WorkOrder {
     @Column(name="order_no",nullable = false,unique = true,length = 30)
     private String orderNo;
 
-    @Column(nullable = false,length = 60)
+    @Column(nullable = false,length = 160)
     private String title;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false,length = 30)
+    @Column(nullable = false,length = 20)
     private WorkOrderStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
@@ -39,7 +39,7 @@ public class WorkOrder {
     @Column(name = "created_at",nullable = false)
     private OffsetDateTime createdAt;
 
-    @Column(name = "updated_at")
+    @Column(name = "updated_at",nullable = false)
     private OffsetDateTime updatedAt;
 
     @PrePersist
