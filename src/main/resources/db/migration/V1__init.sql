@@ -25,7 +25,7 @@ CREATE TABLE work_orders (
   order_no   VARCHAR(30)  NOT NULL UNIQUE,
   title      VARCHAR(160) NOT NULL,
   status     VARCHAR(20)  NOT NULL,
-  machine_id UUID         NULL REFERENCES machines(id) ON DELETE RESTRICT,
+  machine_id UUID         NOT NULL REFERENCES machines(id) ON DELETE RESTRICT,
   created_at TIMESTAMPTZ  NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ  NOT NULL DEFAULT now(),
 
