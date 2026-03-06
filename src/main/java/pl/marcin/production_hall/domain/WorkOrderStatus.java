@@ -6,7 +6,7 @@ public enum WorkOrderStatus {
     IN_PROGRESS,
     PAUSED,
     DONE,
-    CANCELED
+    CANCELLED
 }
 
 

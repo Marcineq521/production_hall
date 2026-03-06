@@ -22,10 +22,10 @@ public class WorkOrder {
     @UuidGenerator
     private UUID id;
 
-    @Column(name="order_no",nullable = false,unique = true,length = 100)
+    @Column(name="order_no",nullable = false,unique = true,length = 30)
     private String orderNo;
 
-    @Column(nullable = false,length = 255)
+    @Column(nullable = false,length = 60)
     private String title;
 
     @Enumerated(EnumType.STRING)

@@ -19,10 +19,10 @@ public class Machine {
     @UuidGenerator
     private UUID id;
 
-    @Column(nullable = false,unique = true,length = 50)
+    @Column(nullable = false,unique = true,length = 10)
     private String code; //D1, D2, D3
 
-    @Column(nullable = false,length = 200)
+    @Column(nullable = false,length = 100)
     private String name;
 
     @Column(name = "is_active",nullable = false)
