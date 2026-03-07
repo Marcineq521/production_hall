@@ -17,11 +17,11 @@ public class AssignmentService {
     private final AssignmentRepository assignmentRepository;
     private final MachineRepository machineRepository;
 
-    public List<Assignment> getActiveAssignments(){
-        return assignmentRepository.findByEndTimeIsNull();
+    public List<AssignmentResponse> getActiveAssignments(){
+        return assignmentRepository.findByEndTimeIsNull().stream().map(this::mapToResponse).toList();
     }
 
-    public Assignment startAssignment(UUID machineId, String operatorName){
+    public AssignmentResponse startAssignment(UUID machineId, String operatorName){
         Assignment existing=assignmentRepository.findByMachine_IdAndEndTimeIsNull(machineId)
                 .orElse(null);
 
@@ -33,19 +33,37 @@ public class AssignmentService {
         Assignment assignment=Assignment.builder().machine(machine).operatorName(operatorName)
                 .build();
 
-        return assignmentRepository.save(assignment);
+        Assignment saved=assignmentRepository.save(assignment);
+
+        return mapToResponse(saved);
 
 
     }
-    public Assignment endAssignment(UUID machineId){
+    public AssignmentResponse endAssignment(UUID machineId){
         Assignment assignment=assignmentRepository.findByMachine_IdAndEndTimeIsNull(machineId)
                 .orElseThrow(()->new RuntimeException("Active assignment not found for this machine"));
             assignment.setEndTime(OffsetDateTime.now());
 
-            return assignmentRepository.save(assignment);
+         Assignment saved=assignmentRepository.save(assignment);
+          return mapToResponse(saved);
     }
 
-    public List<Assignment> getAssignmentsForMachine(UUID machineId){
-        return assignmentRepository.findByMachine_Id(machineId);
+    public List<AssignmentResponse> getAssignmentsForMachine(UUID machineId){
+        return assignmentRepository.findByMachine_Id(machineId)
+                .stream()
+                .map(this::mapToResponse)
+                .toList();
+    }
+
+    private AssignmentResponse mapToResponse(Assignment assignment){
+        return AssignmentResponse.builder()
+                .id(assignment.getId())
+                .machineId(assignment.getMachine().getId())
+                .machineCode(assignment.getMachine().getCode())
+                .operatorName(assignment.getOperatorName())
+                .startTime(assignment.getStartTime())
+                .endTime(assignment.getEndTime())
+                .build();
+
     }
 }
