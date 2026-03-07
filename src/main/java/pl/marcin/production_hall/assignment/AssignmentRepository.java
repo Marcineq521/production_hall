@@ -12,7 +12,7 @@ public interface AssignmentRepository extends JpaRepository<Assignment, UUID> {
 
     List<Assignment> findByEndTimeIsNull();
 
-    Optional<Assignment> findByMachineIdAndEndTimeIsNull(UUID machineId);
+    Optional<Assignment> findByMachine_IdAndEndTimeIsNull(UUID machineId);
 
-    List<Assignment> findByMachineId(UUID machineId);
+    List<Assignment> findByMachine_Id(UUID machineId);
 }
