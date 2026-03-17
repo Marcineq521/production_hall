@@ -35,9 +35,10 @@ CREATE TABLE work_orders (
 
 CREATE TABLE event_logs (
   id            UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  ts            TIMESTAMPTZ  NOT NULL DEFAULT now(),
+  created_at    TIMESTAMPTZ  NOT NULL DEFAULT now(),
   type          VARCHAR(40)  NOT NULL,
   machine_id    UUID         NULL REFERENCES machines(id) ON DELETE SET NULL,
+  assignment_id UUID         NULL REFERENCES assignments(id) ON DELETE SET NULL,
   work_order_id UUID         NULL REFERENCES work_orders(id) ON DELETE SET NULL,
   message       TEXT         NOT NULL
 );
