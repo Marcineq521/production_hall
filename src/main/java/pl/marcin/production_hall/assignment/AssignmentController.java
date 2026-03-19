@@ -27,7 +27,7 @@ public class AssignmentController {
     @PostMapping("/start")
     @ResponseStatus(HttpStatus.CREATED)
     public AssignmentResponse startAssignment(@RequestBody StartAssignmentRequest request){
-        return assignmentService.startAssignment(request.getMachineId(),request.getOperatorName());
+        return assignmentService.startAssignment(request.getMachineId(),request.getOperatorName(),request.getWorkOrderId());
     }
 
     @PostMapping("/end")

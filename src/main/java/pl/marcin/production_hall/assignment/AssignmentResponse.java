@@ -13,5 +13,7 @@ public class AssignmentResponse {
     private String operatorName;
     private OffsetDateTime startTime;
     private OffsetDateTime endTime;
+    private UUID workOrderId;
+    private String workOrderNo;
 
 }

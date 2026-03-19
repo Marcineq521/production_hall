@@ -11,4 +11,5 @@ import java.util.UUID;
 public class StartAssignmentRequest {
     private UUID machineId;
     private String operatorName;
+    private UUID workOrderId;
 }

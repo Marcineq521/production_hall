@@ -16,6 +16,10 @@ import java.util.UUID;
 @Table(name = "assignments")
 public class Assignment {
 
+    @ManyToOne
+    @JoinColumn(name = "work_order_id")
+    private WorkOrder workOrder;
+
     @Id
     @GeneratedValue
     @UuidGenerator
